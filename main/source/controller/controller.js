@@ -39,9 +39,9 @@ module.exports = {
 
     getUnits(req, res) {
         try {
-            console.log("in side getUnits=======>", req.body);
+            console.log("in side getUnits=======>", req.params.type);
             let obj = {
-                unit: req.params.unit
+                unit: req.params.type
             }
             console.log("req body----->  ", obj);
             service.getUnits(obj, (err, data) => {
@@ -67,5 +67,38 @@ module.exports = {
             res, status(500).send({ message: " internal error" })
         }
 
-    }
+    },
+
+    getType(req, res) {
+        try {
+            console.log("in side getType=======>", req.params.type);
+            let obj = {
+                unit: req.params.type
+            }
+            console.log("req body----->  ", obj);
+            service.getType(obj, (err, data) => {
+                if (err) {
+                    response = {
+                        success: "false",
+                        message: "something went wrong"
+                    }
+                    res.status(500).send(response);
+                } else {
+                    response = {
+                        success: "true",
+                        message: "successfully calculated",
+                        data: data
+                    }
+                    console.log("Response for finding data is --->", response);
+                    res.status(200).send(response)
+                }
+            })
+        } catch (err) {
+            console.log(err);
+
+            res, status(500).send({ message: " internal error" })
+        }
+
+    },
+
 }

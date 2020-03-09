@@ -22,14 +22,19 @@ module.exports = {
     getUnits(obj, callback) {
         console.log(obj);
 
-        var unitKeysVal = obj.type;
-        console.log(unitKeysVal);
-        units = unitModule.getUnitValues(unitKeysVal, (err, data) => {
-            if (err) {
-                return callback("data is null")
-            }
-            return callback(null, data)
-        })
-        return callback(null, unitKeysVal);
+        // var unitKeysVal = obj.type;
+        // console.log(unitKeysVal);
+        var keys=Object.keys(quantityJSON.getUnitValues())
+        console.log("sdfghjk",keys);
+         return callback(null, keys);
+    },
+
+
+    getType(obj,callback){
+        console.log();
+        var keys=Object.keys(quantityJSON.getUnitValues()[0]);
+        console.log(keys);
+        return callback(null,keys)
+
     }
 }

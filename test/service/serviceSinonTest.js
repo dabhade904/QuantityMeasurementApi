@@ -15,7 +15,7 @@ describe("quantity measurement sinon testing services", function () {
             }
             assert.equal(data, 0);
         });
-    })
+    }),
 
     it('given Inch and Feet should return ', () => {
         var data2 = {
@@ -49,7 +49,7 @@ describe('data with correct value', function () {
             data = Math.round(data)
             assert.equal(data, 1)
         })
-    })
+    }),
 
     it('given null unit values should return err', function () {
         data2 = {
