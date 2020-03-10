@@ -10,10 +10,13 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "mocha": "^7.1.0",
-    "sinon": "^9.0.0"
+    "sinon": "^9.0.0",
+    "supertest": "^4.0.2",
+    "version": "^0.1.2"
   },
   "devDependencies": {
     "request": "^2.88.2"

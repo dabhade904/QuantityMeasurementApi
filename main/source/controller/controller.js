@@ -2,6 +2,8 @@ var service = require('../service/service')
 
 module.exports = {
     getConversion(req, res) {
+        console.log("inside a controller req body",req.body.unit);
+
         try {
             let obj = {
                 unit: req.body.unit,
@@ -9,15 +11,32 @@ module.exports = {
                 unitType2: req.body.secondUnit,
                 input: req.body.unitValue1
             }
-            console.log("req body --> ", req.body);
+
+            console.log("req body --> ", obj);
+            // if (obj.unit == "" || obj.unitType1 == "" || obj.unitType2 == "") {
+            //     result = 0;
+            //     response = {
+            //         success: "false",
+            //         message: "is not number"
+            //     }
+            //     res.status(500).send(response);
+            // }
+            // if (obj.unit == null || obj.unitType1 == null || obj.unitType2 == null || obj.input == null) {
+            //     result = 0;
+            //     response = {
+            //         success: "false",
+            //         message: "data is null----->"
+            //     }
+            //     res.status().send(response);
+            // }
 
             let response = {}
-
             service.unitMeasurement(obj, ((err, data) => {
                 if (err) {
                     response = {
                         success: "false",
-                        message: "something went wrong",
+                        message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
+                        // message: "something went wrong",
                     }
                     res.status(500).send(response);
 
@@ -48,7 +67,9 @@ module.exports = {
                 if (err) {
                     response = {
                         success: "false",
-                        message: "something went wrong"
+                        message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
+
+                        // message: "something went wrong"
                     }
                     res.status(500).send(response);
                 } else {
@@ -57,7 +78,7 @@ module.exports = {
                         message: "successfully calculated",
                         data: data
                     }
-                    console.log("Response for finding data is --->", response);
+                    console.log("getUnits --------->", response);
                     res.status(200).send(response)
                 }
             })
@@ -80,7 +101,8 @@ module.exports = {
                 if (err) {
                     response = {
                         success: "false",
-                        message: "something went wrong"
+                        message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
+                        // message: "something went wrong"
                     }
                     res.status(500).send(response);
                 } else {
@@ -89,7 +111,7 @@ module.exports = {
                         message: "successfully calculated",
                         data: data
                     }
-                    console.log("Response for finding data is --->", response);
+                    console.log("getType --->", response);
                     res.status(200).send(response)
                 }
             })

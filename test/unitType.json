@@ -1,0 +1,33 @@
+{
+    "properData": {
+        "unit": "LENGTH",
+        "firstUnit": "INCH",
+        "secondUnit": "YARD",
+        "unitValue1": 3
+    },
+    "nullValue": {
+        "unit":null,
+        "firstUnit":null,
+        "secondUnit": null,
+        "unitValue1": null
+    },
+    "emptyData": {
+        "unit": " ",
+        "firstUnit": " ",
+        "secondUnit": " ",
+        "unitValue1": " " 
+    },
+
+    "typeNotMatch": {
+        "unit": "LENGTH",
+        "firstUnit": "KG",
+        "secondUnit": "GRAM",
+        "unitValue1": 1
+    },
+    "wrongUnit": {
+        "type": "VOLUME",
+        "firstUnit": "IN",
+        "secoundUnit": "YA",
+        "value": 2
+    }
+}
