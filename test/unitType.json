@@ -29,5 +29,12 @@
         "firstUnit": "IN",
         "secoundUnit": "YA",
         "value": 2
+    },
+
+    "whenUnitTypeEmpty": {
+        "type": "",
+        "firstUnit": "IN",
+        "secoundUnit": "YA",
+        "value": 2
     }
 }

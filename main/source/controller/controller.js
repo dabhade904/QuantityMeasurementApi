@@ -1,42 +1,24 @@
-var service = require('../service/service')
 
+var service = require('../service/service')
+// const { checkBody} = require('express-validator');
 module.exports = {
     getConversion(req, res) {
-        console.log("inside a controller req body",req.body.unit);
+        console.log("inside a controller req body", req.body.unit);
 
         try {
+            let response = {}
             let obj = {
                 unit: req.body.unit,
                 unitType1: req.body.firstUnit,
                 unitType2: req.body.secondUnit,
-                input: req.body.unitValue1
+                input: req.body.unitValue1   
             }
-
             console.log("req body --> ", obj);
-            // if (obj.unit == "" || obj.unitType1 == "" || obj.unitType2 == "") {
-            //     result = 0;
-            //     response = {
-            //         success: "false",
-            //         message: "is not number"
-            //     }
-            //     res.status(500).send(response);
-            // }
-            // if (obj.unit == null || obj.unitType1 == null || obj.unitType2 == null || obj.input == null) {
-            //     result = 0;
-            //     response = {
-            //         success: "false",
-            //         message: "data is null----->"
-            //     }
-            //     res.status().send(response);
-            // }
-
-            let response = {}
             service.unitMeasurement(obj, ((err, data) => {
                 if (err) {
                     response = {
                         success: "false",
                         message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
-                        // message: "something went wrong",
                     }
                     res.status(500).send(response);
 
@@ -69,7 +51,6 @@ module.exports = {
                         success: "false",
                         message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
 
-                        // message: "something went wrong"
                     }
                     res.status(500).send(response);
                 } else {
@@ -84,10 +65,8 @@ module.exports = {
             })
         } catch (err) {
             console.log(err);
-
             res, status(500).send({ message: " internal error" })
         }
-
     },
 
     getType(req, res) {
@@ -102,7 +81,6 @@ module.exports = {
                     response = {
                         success: "false",
                         message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
-                        // message: "something went wrong"
                     }
                     res.status(500).send(response);
                 } else {
@@ -117,10 +95,7 @@ module.exports = {
             })
         } catch (err) {
             console.log(err);
-
             res, status(500).send({ message: " internal error" })
         }
-
     },
-
 }

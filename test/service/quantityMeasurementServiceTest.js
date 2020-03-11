@@ -14,7 +14,7 @@ describe("quantity measurement sinon testing services", function () {
             if (err) {
                 console.log(err);
             }
-            assert.equal(data,0);
+            assert.equal(data,null);
         });
     })
 
@@ -51,16 +51,44 @@ describe('data with correct value', function () {
             })
         })
 
-    it('given null unit values should return err', function () {
+    it('given null empty values should return err', function () {
         data2 = {
             unit: "",
-            firstUnit: "",
-            secondUnit: "",
-            unitValue: ""
+            unitType1: "",
+            unitType2: "",
+            input: ""
         }
         service.unitMeasurement(data2, (err, data) => {
             if (err) {
-                assert.equal(err, "data is empty")
+                assert.equal(err, "")
+            }
+        })
+    })
+
+    it('given null undifined values should return err', function () {
+        data2 = {
+            unit: undefined,
+            unitType1: undefined,
+            unitType2: undefined,
+            input: undefined
+        }
+        service.unitMeasurement(data2, (err, data) => {
+            if (err) {
+                assert.equal(err,undefined)
+            }
+        })
+    })
+
+    it('given null unit values should return err', function () {
+        data2 = {
+            unit: null,
+            unitType1:null,
+            unitType2: null,
+            input: 0
+        }
+        service.unitMeasurement(data2, (err, data) => {
+            if (err) {
+                assert.equal(err, null)
             }
         })
     })
@@ -68,15 +96,30 @@ describe('data with correct value', function () {
     it('given Inch and Feet should return ', () => {
         var data2 = {
             unit: "LENGTH",
-            firstUnit: "FEET",
-            secondUnit: "INCH",
-            unitValue: 2
+            unitType1: "FEET",
+            unitType2: "INCH",
+            input: 2
         }
         service.unitMeasurement(data2, (err, data) => {
             if (err) {
                 console.log(err);
             }
-            assert.equal(data)
+            assert.equal(data,24)
+        })
+    })
+
+    it('given gallon and litre should return correct value ', () => {
+        var data2 = {
+            unit: "VOLUME",
+            unitType1: "GALLON",
+            unitType2: "LITRE",
+            input: 3
+        }
+        service.unitMeasurement(data2, (err, data) => {
+            if (err) {
+                console.log(err);
+            }
+            assert.equal(data,3000)
         })
     })
 })

@@ -1,12 +1,13 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const cors = require('cors')
+const expressValidator=require('express-validator')
 const app = express();
-const port =4000;
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.use(bodyParser.json())
 app.use(cors())
+app.use(expressValidator())
 
 //setting notes routes to express app
 require('./main/source/routes/routes')(app)
