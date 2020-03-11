@@ -8,22 +8,29 @@ module.exports = {
         unitType2 = obj.unitType2
         input = obj.input
         var result;
+        
         console.log(input);
         console.log(unitType1);
         console.log(unitType2);
         console.log(unit);
 
-        if (unit == "" || unitType1 == "" || unitType2 == "" || input == "") {
-            console.log("Data is empty------->");
-        } else if (unit == null || unitType1 == null || unitType2 == null || input == null) {
-            console.log("Data is null------->");
-        } else if (unit == undefined || unitType1 == undefined || unitType2 == undefined || input == undefined) {
-            console.log("Data is undefined------>");
-        } else {
-            var keys = Object.keys(quantity.getUnitValues());
+        // if (unit == "" || unitType1 == "" || unitType2 == "" || input == "") {
+        //     console.log("Data is empty------->");
+        // } else if (unit == null || unitType1 == null || unitType2 == null || input == null) {
+        //     console.log("Data is null------->");
+        // } else if (unit == undefined || unitType1 == undefined || unitType2 == undefined || input == undefined) {
+        //     console.log("Data is undefined------>");
+        // } else {
+        //     console.log('in service aksjasdhaksdhlsdjaldaklsalsk',);
+            
+            // var keys = Object.keys(quantity.getUnitValues());
+            // console.log(keys);
+            // console.log(quantity.getUnitValues()[unit]);
+            
             var result = quantity.getUnitValues()[unit][unitType2][unitType1] * input
+
             console.log("service", Math.round(result));
-        }
+        // }
         return callback(null, result);
     },
 

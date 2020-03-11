@@ -11,7 +11,7 @@ var data1 = {
 }
 
 var data2 = {
-    unit: "LENGHT",
+    unit: "LENGTH",
     firstUnit: "INCH",
     secondUnit: "FEET",
     unitValue1: 1

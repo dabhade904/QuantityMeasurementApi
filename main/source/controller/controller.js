@@ -1,38 +1,49 @@
 
 var service = require('../service/service')
-// const { checkBody} = require('express-validator');
 module.exports = {
     getConversion(req, res) {
         console.log("inside a controller req body", req.body.unit);
 
         try {
+            console.log("inside a try");
+            
+            req.checkBody('unit').isUppercase().isAlpha().exists()
+            req.checkBody('firstUnit').isUppercase().isAlpha().exists();
+            req.checkBody('secondUnit').isUppercase().isAlpha().exists();
+            req.checkBody('input').isNumeric().exists();
+            console.log("sdghjk");
+            
+            const error = req.validationErrors();
             let response = {}
-            let obj = {
-                unit: req.body.unit,
-                unitType1: req.body.firstUnit,
-                unitType2: req.body.secondUnit,
-                input: req.body.unitValue1   
-            }
-            console.log("req body --> ", obj);
-            service.unitMeasurement(obj, ((err, data) => {
-                if (err) {
-                    response = {
-                        success: "false",
-                        message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
-                    }
-                    res.status(500).send(response);
-
-                } else {
-                    response = {
-                        success: "true",
-                        message: "successfully calculated",
-                        data: data
-                    }
-                    console.log("response--> ", response);
-
-                    res.status(200).send(response)
+            if (error) {
+                return res.status(500).send("Please enter valid data");
+            } else {
+                let obj = {
+                    unit: req.body.unit,
+                    unitType1: req.body.firstUnit,
+                    unitType2: req.body.secondUnit,
+                    input: req.body.input
                 }
-            }))
+
+                console.log("req body --> ", obj);
+                service.unitMeasurement(obj, ((err, data) => {
+                    if (err) { 
+                        response = {
+                            success: "false",
+                            message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
+                        }
+                        res.status(500).send(response);
+                    } else {
+                        response = {
+                            success: "true",
+                            message: "successfully calculated",
+                            data: data
+                        }
+                        console.log("response--> ", response);
+                        res.status(200).send(response)
+                    }
+                }))
+            }
         } catch (err) {
             res.status(500).send({ message: "internal errors" })
         }
@@ -50,7 +61,6 @@ module.exports = {
                     response = {
                         success: "false",
                         message: "Failed to load resource: the server responded with a status of 404 (Not Found)"
-
                     }
                     res.status(500).send(response);
                 } else {
@@ -97,5 +107,7 @@ module.exports = {
             console.log(err);
             res, status(500).send({ message: " internal error" })
         }
+
     },
+
 }
